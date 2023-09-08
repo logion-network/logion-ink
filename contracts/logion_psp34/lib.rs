@@ -31,13 +31,6 @@ pub mod logion_psp34 {
         }
     }
 
-    #[derive(Debug, PartialEq, Eq, scale::Encode, scale::Decode)]
-    #[cfg_attr(feature = "std", derive(::scale_info::TypeInfo))]
-    pub enum LogionError {
-        /// Returned if some Logion Metadata is missing.
-        MissingLogionMetadata,
-    }
-
     #[ink(storage)]
     #[derive(Default, Storage)]
     pub struct LogionPsp34 {
@@ -60,19 +53,19 @@ pub mod logion_psp34 {
         }
 
         #[ink(message)]
-        pub fn get_collection_loc_id(&self) -> Result<String, LogionError> {
+        pub fn get_collection_loc_id(&self) -> String {
             self.get_logion_metadata(COLLECTION_LOC_ID_KEY)
         }
 
         #[ink(message)]
-        pub fn get_item_id(&self, token_id: Id) -> Result<String, LogionError> {
-            let item_id_seed = self.get_item_id_seed(token_id)?;
+        pub fn get_item_id(&self, token_id: Id) -> String {
+            let item_id_seed = self.get_item_id_seed(token_id);
             let item_id = self.hash(&item_id_seed.as_bytes().to_vec());
-            Ok(format!("{}", item_id))
+            format!("{}", item_id)
         }
 
-        pub(crate) fn get_item_id_seed(&self, token_id: Id) -> Result<String, LogionError> {
-            let nonce = self.get_logion_metadata(NONCE_KEY)?;
+        pub(crate) fn get_item_id_seed(&self, token_id: Id) -> String {
+            let nonce = self.get_logion_metadata(NONCE_KEY);
 
             let id_type = String::from(match token_id {
                 Id::U8(_) => "U8",
@@ -92,16 +85,15 @@ pub mod logion_psp34 {
                 Id::Bytes(value) => format!("{}", self.hash(&value)),
             };
 
-            Ok(format!("{}:{}({})", nonce, id_type, id_value))
+            format!("{}:{}({})", nonce, id_type, id_value)
         }
 
         #[ink(message)]
-        pub fn get_certificate_url(&self, token_id: Id) -> Result<String, LogionError> {
-            let cert_host = self.get_logion_metadata(CERT_HOST_KEY)?;
-            let collection_loc_id = self.get_collection_loc_id()?;
-            let item_id = self.get_item_id(token_id)?;
-            let url = format!("https://{}/public/certificate/{}/{}", cert_host, collection_loc_id, item_id);
-            Ok(url)
+        pub fn get_certificate_url(&self, token_id: Id) -> String {
+            let cert_host = self.get_logion_metadata(CERT_HOST_KEY);
+            let collection_loc_id = self.get_collection_loc_id();
+            let item_id = self.get_item_id(token_id);
+            format!("https://{}/public/certificate/{}/{}", cert_host, collection_loc_id, item_id)
         }
 
         fn hash(&self, input: &Vec<u8>) -> LogionHash {
@@ -109,12 +101,9 @@ pub mod logion_psp34 {
             LogionHash { value: value.into() }
         }
 
-        fn get_logion_metadata(&self, key: &'static str) -> Result<String, LogionError> {
+        fn get_logion_metadata(&self, key: &'static str) -> String {
             let attribute = PSP34MetadataImpl::get_attribute(self, ID_FOR_LOGION_METADATA.clone(), String::from(key));
-            match attribute {
-                Some(value) => Ok(value),
-                _ => Err(LogionError::MissingLogionMetadata)
-            }
+            attribute.expect("Missing Logion Metadata")
         }
     }
 }
