@@ -70,4 +70,5 @@ In order to use a contract that someone else deployed, you need to know the **Co
 |------------|--------------------------------------------------------------------------------------------|-------------------------------------------------|
 | 2023-09-06 | https://contracts-ui.substrate.io/contract/XyNVZ92vFrYf4rCj8EoAXMRWRG7okRy7gxhn167HaYQZqTc | XyNVZ92vFrYf4rCj8EoAXMRWRG7okRy7gxhn167HaYQZqTc |
 | 2023-09-08 | https://contracts-ui.substrate.io/contract/ZEoCdLf7zXHNw2BEtzL6mptzHKKFWAc2jYyeuRkVQUW7ddw | ZEoCdLf7zXHNw2BEtzL6mptzHKKFWAc2jYyeuRkVQUW7ddw |
+| 2023-09-08 | https://contracts-ui.substrate.io/contract/ai7fX8imUNnUaJfPxQMHhGagp9Bx7YGKxF3Xdnoe7tcUXbU | ai7fX8imUNnUaJfPxQMHhGagp9Bx7YGKxF3Xdnoe7tcUXbU |
 

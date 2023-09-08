@@ -7,6 +7,7 @@ pub mod tests;
 #[openbrush::contract]
 pub mod logion_psp34 {
     use core::fmt::{Display, Error, Formatter};
+    use core::str::FromStr;
     use ink_env::format;
     use ink_env::hash::Sha2x256;
     use openbrush::traits::Storage;
@@ -42,19 +43,20 @@ pub mod logion_psp34 {
 
     impl LogionPsp34 {
         #[ink(constructor)]
-        pub fn new(nonce: String, collection_loc_id: String, cert_host: String) -> Self {
+        pub fn new(nonce: String, collection_loc_id: u128, cert_host: String) -> Self {
             let mut instance = Self::default();
 
             metadata::Internal::_set_attribute(&mut instance, ID_FOR_LOGION_METADATA.clone(), String::from(NONCE_KEY), nonce);
-            metadata::Internal::_set_attribute(&mut instance, ID_FOR_LOGION_METADATA.clone(), String::from(COLLECTION_LOC_ID_KEY), collection_loc_id);
+            metadata::Internal::_set_attribute(&mut instance, ID_FOR_LOGION_METADATA.clone(), String::from(COLLECTION_LOC_ID_KEY), format!("{}", collection_loc_id));
             metadata::Internal::_set_attribute(&mut instance, ID_FOR_LOGION_METADATA.clone(), String::from(CERT_HOST_KEY), cert_host);
 
             instance
         }
 
         #[ink(message)]
-        pub fn get_collection_loc_id(&self) -> String {
-            self.get_logion_metadata(COLLECTION_LOC_ID_KEY)
+        pub fn get_collection_loc_id(&self) -> u128 {
+            let collection_loc_id = self.get_logion_metadata(COLLECTION_LOC_ID_KEY);
+            u128::from_str(&collection_loc_id).unwrap()
         }
 
         #[ink(message)]

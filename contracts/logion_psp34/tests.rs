@@ -5,13 +5,13 @@ use openbrush::contracts::psp34::Id;
 
 use crate::logion_psp34::LogionPsp34;
 
-const COLLECTION_LOC_ID: &str = "334801581596596632473758891935041239976";
+const COLLECTION_LOC_ID: u128 = 334801581596596632473758891935041239976;
 
 #[test]
 fn it_gets_collection_loc_id() {
     set_up();
     let contract = new_contract();
-    assert_eq!(contract.get_collection_loc_id(), COLLECTION_LOC_ID.to_string());
+    assert_eq!(contract.get_collection_loc_id(), COLLECTION_LOC_ID);
 }
 
 #[test]
@@ -50,7 +50,7 @@ fn it_gets_certificate_url() {
 fn new_contract() -> LogionPsp34 {
     LogionPsp34::new(
         "202210131727".to_string(),
-        COLLECTION_LOC_ID.to_string(),
+        COLLECTION_LOC_ID,
         "certificate.logion.network".to_string(),
     )
 }
