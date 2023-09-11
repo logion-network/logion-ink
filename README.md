@@ -3,7 +3,7 @@ Logion Smart Contract library for Ink!
 
 ## Development setup
 
-Refer to Astar Docs [ink! environment]() for details.
+Refer to Astar Docs [ink! environment](https://docs.astar.network/docs/build/environment/ink_environment) for details.
 
 In a nutshell, for Ubuntu:
 
@@ -44,12 +44,10 @@ cargo build contract --release
 * Sign
 
 ### Manual, with polkadot.js
+A similar procedure is available on Polkadot-JS:
 * Use [polkadot.js](https://polkadot.js.org/apps/?rpc=wss%3A%2F%2Frpc.shibuya.astar.network#/contracts) to connect to Shibuya.
-* Click "Upload & deploy code" and select `logion_psp34.contract` under `target/ink/logion_psp34`.
-* Click "Next".
-* Provide a value for `nonce`, `collectionLocId` and `certHost`.
-* Click "Deploy".
-* Sign
+* Click "Developers > Contracts" to access a UI similar to Contract UI.
+* Follow the same steps.
 
 **WARNING** On 8/9/2023 attempt, this method did not succeed to deploy.
 
