@@ -1,17 +1,22 @@
 [package]
-name = "logion_contract_pkg"
-version = "1.0.0"
-edition = "2021"
+name = 'logion_contract'
+version = "0.1.0"
 authors = ["Logion Team <team@logion.network>"]
+description = "A package to make your ink! contracts and NFT's Logion-compliant."
+edition = "2021"
+homepage = 'https://logion.network'
+license = 'Apache-2.0'
+readme = 'README.md'
+repository = 'https://github.com/logion-network/logion-ink'
+keywords = ['logion']
 
 [dependencies]
-
 ink = { version = "4.3.0", default-features = false }
 ink_env = { version = "4.3.0", default-features = false }
 ink_prelude = { version = "4.3.0", default-features = false }
 scale = { package = "parity-scale-codec", version = "3", default-features = false, features = ["derive"] }
 scale-info = { version = "2.6", default-features = false, features = ["derive"], optional = true }
-openbrush = { tag = "4.0.0-beta", git = "https://github.com/Brushfam/openbrush-contracts", default-features = false, features = ["psp34", "ownable"] }
+openbrush = { tag = "4.0.0-beta", git = "https://github.com/Brushfam/openbrush-contracts", default-features = false, features = ["psp34"] }
 
 [lib]
 path = "lib.rs"

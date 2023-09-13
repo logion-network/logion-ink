@@ -11,8 +11,8 @@ ink_env = { version = "4.3.0", default-features = false }
 ink_prelude = { version = "4.3.0", default-features = false }
 scale = { package = "parity-scale-codec", version = "3", default-features = false, features = ["derive"] }
 scale-info = { version = "2.6", default-features = false, features = ["derive"], optional = true }
-openbrush = { tag = "4.0.0-beta", git = "https://github.com/Brushfam/openbrush-contracts", default-features = false, features = ["psp34", "ownable"] }
-logion_contract_pkg = { path = "../../logics", default-features = false }
+openbrush = { tag = "4.0.0-beta", git = "https://github.com/Brushfam/openbrush-contracts", default-features = false, features = ["psp34"] }
+logion_contract = { path = "../../logics", default-features = false }
 
 [lib]
 path = "lib.rs"
@@ -26,6 +26,6 @@ std = [
     "scale/std",
     "scale-info/std",
     "openbrush/std",
-    "logion_contract_pkg/std",
+    "logion_contract/std",
 ]
 ink-as-dependency = []

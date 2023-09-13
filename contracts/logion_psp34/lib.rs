@@ -3,8 +3,8 @@
 #[openbrush::implementation(PSP34, PSP34Mintable)]
 #[openbrush::contract]
 pub mod logion_psp34 {
-    use logion_contract_pkg::impls::logion::*;
-    use logion_contract_pkg::impls::types as logion;
+    use logion_contract::impls::logion::*;
+    use logion_contract::impls::types as logion;
     use openbrush::traits::Storage;
     use openbrush::traits::String;
 

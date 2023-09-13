@@ -62,6 +62,12 @@ In order to use a contract that someone else deployed, you need to know the **Co
 * Click "Upload Metadata" and select `logion_psp34.json` under `target/ink/logion_psp34`.
 * Click "Add Contract".
 
+## Publish
+
+_Note: It's not possible at the moment (Sep 2023) to publish a package to crates.io, due to the dependency to openbrush._
+
+1. Update the `version` in [Cargo.toml](logics/Cargo.toml) 
+2. Commit, tag (`v0.1.0` for `version = "0.1.0"`) and push.
 
 ## Deployment Log
 | Date       | URL                                                                                        | Contract Address                                |
@@ -69,4 +75,5 @@ In order to use a contract that someone else deployed, you need to know the **Co
 | 2023-09-06 | https://contracts-ui.substrate.io/contract/XyNVZ92vFrYf4rCj8EoAXMRWRG7okRy7gxhn167HaYQZqTc | XyNVZ92vFrYf4rCj8EoAXMRWRG7okRy7gxhn167HaYQZqTc |
 | 2023-09-08 | https://contracts-ui.substrate.io/contract/ZEoCdLf7zXHNw2BEtzL6mptzHKKFWAc2jYyeuRkVQUW7ddw | ZEoCdLf7zXHNw2BEtzL6mptzHKKFWAc2jYyeuRkVQUW7ddw |
 | 2023-09-08 | https://contracts-ui.substrate.io/contract/ai7fX8imUNnUaJfPxQMHhGagp9Bx7YGKxF3Xdnoe7tcUXbU | ai7fX8imUNnUaJfPxQMHhGagp9Bx7YGKxF3Xdnoe7tcUXbU |
+| 2023-09-13 | https://contracts-ui.substrate.io/contract/YvRHB73h5oa1x5ALrTrz5iA8g58iZausvrg9B5BmYnD2Em4 | YvRHB73h5oa1x5ALrTrz5iA8g58iZausvrg9B5BmYnD2Em4 |
 
