@@ -25,15 +25,8 @@ impl Display for LogionHash {
     }
 }
 
-pub trait Internal {
-
-    fn hash(&self, input: &Vec<u8>) -> LogionHash;
-
-    fn get_item_id_seed(&self, token_id: Id) -> String;
-}
-
 #[openbrush::trait_definition]
-pub trait Logion: Storage<Data>
+pub trait Logion: Storage<Data> + Internal
 {
 
     #[ink(message)]
@@ -43,7 +36,8 @@ pub trait Logion: Storage<Data>
 
     #[ink(message)]
     fn get_item_id(&self, token_id: Id) -> String {
-        let item_id_seed = self.get_item_id_seed(token_id);
+        let nonce = &self.data::<Data>().nonce;
+        let item_id_seed = self.get_item_id_seed(nonce, token_id);
         let item_id = self.hash(&item_id_seed.as_bytes().to_vec());
         format!("{}", item_id)
     }
@@ -58,9 +52,7 @@ pub trait Logion: Storage<Data>
 
 }
 
-impl<T> Internal for T
-    where
-        T: Storage<Data>
+pub trait Internal
 {
     fn hash(&self, input: &Vec<u8>) -> LogionHash {
         let mut output = <Sha2x256 as HashOutput>::Type::default(); // 256-bit buffer
@@ -68,8 +60,7 @@ impl<T> Internal for T
         LogionHash { value: output.into() }
     }
 
-    fn get_item_id_seed(&self, token_id: Id) -> String {
-        let nonce = &self.data::<Data>().nonce;
+    fn get_item_id_seed(&self, nonce: &String, token_id: Id) -> String {
 
         let id_type = String::from(match token_id {
             Id::U8(_) => "U8",
@@ -93,3 +84,5 @@ impl<T> Internal for T
     }
 
 }
+
+impl<T> Internal for T where T: Storage<Data> {}
