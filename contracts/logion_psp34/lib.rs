@@ -46,7 +46,6 @@ pub mod logion_psp34 {
         fn it_gets_item_id() {
             let contract = new_contract();
             let token_id = Id::U8(123);
-            // echo -n "202210131727:U8(123)" | sha256sum => 71e240ef02a005a86b70ad321687f95afb8c6519122962d9144e943cd04311cf
             let expected_hash = "0x71e240ef02a005a86b70ad321687f95afb8c6519122962d9144e943cd04311cf".to_string();
             assert_eq!(contract.get_item_id(token_id), expected_hash);
         }
