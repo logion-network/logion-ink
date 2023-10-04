@@ -23,7 +23,7 @@ cargo test
 
 ```shell
 cd contracts/logion_psp34
-cargo build contract --release
+cargo contract build --release
 ```
 
 ## Deploy
